@@ -1,6 +1,6 @@
 {
     "name": "paslandau/KeywordSuggest",
-    "description" : "Library to query Keyword Suggest systems",
+    "description" : "Library to query keyword suggest systems",
     "authors": [
         {
             "name": "Pascal Landau",

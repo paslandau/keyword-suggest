@@ -1,8 +1,10 @@
 #KeywordSuggest
 
-Coming soon...
+Library to query keyword suggest systems
 
 ##Description
+
+Coming soon...
 
 ##Requirements
 
