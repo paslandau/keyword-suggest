@@ -1,0 +1,40 @@
+{
+    "name": "paslandau/KeywordSuggest",
+    "description" : "Library to query Keyword Suggest systems",
+    "authors": [
+        {
+            "name": "Pascal Landau",
+            "email": "kontakt@myseosolution.de",
+            "homepage": "http://www.myseosolution.de",
+            "role": "Developer"
+        }
+    ],
+	"autoload": {
+	    "psr-4": {
+	        "paslandau\\KeywordSuggest\\": "src/"
+	    }
+	},
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/paslandau/GuzzleApplicationCacheSubscriber.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/paslandau/GuzzleAutoCharsetEncodingSubscriber.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/paslandau/GuzzleRotatingProxySubscriber.git"
+        }
+    ],
+    "require" : {
+        "php": "~5.5",
+        "guzzlehttp/guzzle": "~5",
+        "paslandau/GuzzleRotatingProxySubscriber": "~0"
+    },
+    "suggest" : {
+        "paslandau/GuzzleApplicationCacheSubscriber": "~0",
+        "paslandau/GuzzleAutoCharsetEncodingSubscriber": "~0"
+    }
+}
