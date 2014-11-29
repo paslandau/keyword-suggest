@@ -1,4 +1,4 @@
-#KeywordSuggest
+#keyword-suggest
 
 Library to query keyword suggest systems
 
@@ -14,21 +14,21 @@ Coming soon...
 
 ##Installation
 
-The recommended way to install KeywordSuggest is through [Composer](http://getcomposer.org/).
+The recommended way to install keyword-suggest is through [Composer](http://getcomposer.org/).
 
     curl -sS https://getcomposer.org/installer | php
 
-Next, update your project's composer.json file to include IOUtility:
+Next, update your project's composer.json file to include keyword-suggest:
 
     {
         "repositories": [
             {
                 "type": "git",
-                "url": "https://github.com/paslandau/KeywordSuggest.git"
+                "url": "https://github.com/paslandau/keyword-suggest.git"
             }
         ],
         "require": {
-             "paslandau/KeywordSuggest": "~0"
+             "paslandau/keyword-suggest": "~0"
         }
     }
 

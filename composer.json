@@ -1,5 +1,5 @@
 {
-    "name": "paslandau/KeywordSuggest",
+    "name": "paslandau/keyword-suggest",
     "license": "MIT",
     "description" : "Library to query keyword suggest systems",
     "authors": [
@@ -35,6 +35,10 @@
         {
             "type": "git",
             "url": "https://github.com/paslandau/ArrayUtility.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/paslandau/ComparisonUtility.git"
         }
     ],
     "require" : {
