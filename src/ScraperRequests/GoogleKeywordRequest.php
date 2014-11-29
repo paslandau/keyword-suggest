@@ -29,10 +29,10 @@ class GoogleKeywordRequest extends AbstractKeywordRequest
 
     /**
      * @param string $keyword
-     * @param string $group. [optional]. Default: "".
+     * @param string $group . [optional]. Default: "".
      * @param int|null $cursorPosition [optional]. Default: null.
      * @param string|null $domain [optional]. Default: null.
-     * @param string $domain [optional]. Default: de.
+     * @param string $lang [optional]. Default: de.
      */
     function __construct($keyword, $group = null, $cursorPosition = null, $domain = null, $lang = null)
     {
@@ -91,6 +91,9 @@ class GoogleKeywordRequest extends AbstractKeywordRequest
         }
         $suggestArray = [];
         foreach ($obj[1] as $arr) {
+            if(count($arr) > 3){
+                continue; // probably not a suggest but some other info
+            }
             $tmp = $arr[0];
             $tmp = str_replace("<b>", "", $tmp);
             $tmp = str_replace("</b>", "", $tmp);

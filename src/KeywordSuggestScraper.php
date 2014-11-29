@@ -40,7 +40,7 @@ class KeywordSuggestScraper
     private $error;
 
     /**
-     * @param Client $client
+     * @param ClientInterface $client
      * @param int $parallel . [optional]. Default: 5.
      * @param int $maxRetries . [optional]. Default: 3.
      */
@@ -77,6 +77,37 @@ class KeywordSuggestScraper
             $result[$key] = new KeywordResult($keywordRequest, [], new KeywordSuggestException("Request has not been executed!"));
         }
 
+        $complete = $this->getOnComplete();
+
+        $error = $this->getOnError();
+
+        $end = $this->getOnEnd($complete, $error, $result, $keywordRequests);
+
+        $pool = new Pool($this->client, $requests,
+            [
+                "pool_size" => $this->parallel,
+                "complete" => $end,
+                "error" => $end,
+                "end" => function (EndEvent $event) use (&$pool) {
+                    $exception = $event->getException();
+//                    echo "In terminateFn filter, ".$event->getRequest()->getConfig()->get(KeywordSuggestScraper::GUZZLE_REQUEST_ID_KEY)."\n";
+                    if ($exception instanceof NoProxiesLeftException) {
+//                        echo $exception->getMessage();
+                        $this->error = $exception;
+                        /** @var Pool $pool */
+                        $pool->cancel();
+                    }
+                }
+            ]);
+        $pool->wait();
+
+        return $result;
+    }
+
+    /**
+     * @return callable
+     */
+    public function getOnComplete(){
         $complete = function (KeywordRequestInterface $request, ResponseInterface $response) {
             $suggests = [];
             $exception = null;
@@ -88,12 +119,28 @@ class KeywordSuggestScraper
             $keywordResult = new KeywordResult($request, $suggests, $exception);
             return $keywordResult;
         };
+        return $complete;
+    }
 
+    /**
+     * @return callable
+     */
+    public function getOnError(){
         $error = function (KeywordRequestInterface $request, \Exception $exception) {
             $keywordResult = new KeywordResult($request, null, $exception);
             return $keywordResult;
         };
+        return $error;
+    }
 
+    /**
+     * @param callable $complete
+     * @param callable $error
+     * @param array $result
+     * @param array $keywordRequests
+     * @return callable
+     */
+    public function getOnEnd(callable $complete, callable $error, array &$result, array &$keywordRequests){
         $end = function (AbstractTransferEvent $event) use ($complete, $error, &$result, &$keywordRequests) {
 //            echo "In keywordSuggestEnd filter, " . $event->getRequest()->getConfig()->get(KeywordSuggestScraper::GUZZLE_REQUEST_ID_KEY) . "\n";
             $request = $event->getRequest();
@@ -124,26 +171,7 @@ class KeywordSuggestScraper
             }
             $result[$requestId] = $keywordResult;
         };
-
-
-        $pool = new Pool($this->client, $requests,
-            [
-                "pool_size" => $this->parallel,
-                "complete" => $end,
-                "error" => $end,
-                "end" => function (EndEvent $event) use (&$pool) {
-                    $exception = $event->getException();
-//                    echo "In terminateFn filter, ".$event->getRequest()->getConfig()->get(KeywordSuggestScraper::GUZZLE_REQUEST_ID_KEY)."\n";
-                    if ($exception instanceof NoProxiesLeftException) {
-//                        echo $exception->getMessage();
-                        $this->error = $exception;
-                        $pool->cancel();
-                    }
-                }
-            ]);
-        $pool->wait();
-
-        return $result;
+        return $end;
     }
 
     /**

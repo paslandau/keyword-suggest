@@ -1,5 +1,6 @@
 {
     "name": "paslandau/KeywordSuggest",
+    "license": "MIT",
     "description" : "Library to query keyword suggest systems",
     "authors": [
         {
