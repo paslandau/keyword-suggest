@@ -18,41 +18,41 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/paslandau/GuzzleApplicationCacheSubscriber.git"
+            "url": "https://github.com/paslandau/guzzle-application-cache-subscriber.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/paslandau/GuzzleAutoCharsetEncodingSubscriber.git"
+            "url": "https://github.com/paslandau/guzzle-auto-charset-encoding-subscriber.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/paslandau/GuzzleRotatingProxySubscriber.git"
+            "url": "https://github.com/paslandau/guzzle-rotating-proxy-subscriber.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/paslandau/WebUtility.git"
+            "url": "https://github.com/paslandau/web-utility.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/paslandau/ArrayUtility.git"
+            "url": "https://github.com/paslandau/array-utility.git"
         },
         {
             "type": "git",
-            "url": "https://github.com/paslandau/ComparisonUtility.git"
+            "url": "https://github.com/paslandau/comparison-utility.git"
         }
     ],
     "require" : {
         "php": "~5.5",
         "guzzlehttp/guzzle": "~5",
-        "paslandau/WebUtility": "~0",
-        "paslandau/GuzzleRotatingProxySubscriber": "~0"
+        "paslandau/web-utility": "~0",
+        "paslandau/guzzle-rotating-proxy-subscriber": "~0"
     },
     "require-dev": {
         "phpunit/phpunit": "~3",
-        "paslandau/ArrayUtility": "~0"
+        "paslandau/array-utility": "~0"
     },
     "suggest" : {
-        "paslandau/GuzzleApplicationCacheSubscriber": "~0",
-        "paslandau/GuzzleAutoCharsetEncodingSubscriber": "~0"
+        "paslandau/guzzle-application-cache-subscriber": "~0",
+        "paslandau/guzzle-auto-charset-encoding-subscriber": "~0"
     }
 }

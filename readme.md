@@ -10,7 +10,7 @@ Coming soon...
 
 - PHP >= 5.5
 - Guzzle >= 5.0.3
-- GuzzleRotatingProxySubscriber": "~0",
+- guzzle-rotating-proxy-subscriber": "~0",
 
 ##Installation
 
