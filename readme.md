@@ -21,14 +21,10 @@ The recommended way to install keyword-suggest is through [Composer](http://getc
 Next, update your project's composer.json file to include keyword-suggest:
 
     {
-        "repositories": [
-            {
-                "type": "git",
-                "url": "https://github.com/paslandau/keyword-suggest.git"
-            }
-        ],
+        "repositories": [ { "type": "composer", "url": "http://packages.myseosolution.de/"} ],
+        "minimum-stability": "dev",
         "require": {
-             "paslandau/keyword-suggest": "~0"
+             "paslandau/keyword-suggest": "dev-master"
         }
     }
 

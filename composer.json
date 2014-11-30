@@ -15,44 +15,20 @@
 	        "paslandau\\KeywordSuggest\\": "src/"
 	    }
 	},
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/paslandau/guzzle-application-cache-subscriber.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/paslandau/guzzle-auto-charset-encoding-subscriber.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/paslandau/guzzle-rotating-proxy-subscriber.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/paslandau/web-utility.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/paslandau/array-utility.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/paslandau/comparison-utility.git"
-        }
-    ],
+    "repositories": [ { "type": "composer", "url": "http://packages.myseosolution.de/"} ],
+    "minimum-stability": "dev",
     "require" : {
         "php": "~5.5",
         "guzzlehttp/guzzle": "~5",
-        "paslandau/web-utility": "~0",
-        "paslandau/guzzle-rotating-proxy-subscriber": "~0"
+        "paslandau/web-utility": "dev-master",
+        "paslandau/guzzle-rotating-proxy-subscriber": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~3",
-        "paslandau/array-utility": "~0"
+        "paslandau/array-utility": "dev-master"
     },
     "suggest" : {
-        "paslandau/guzzle-application-cache-subscriber": "~0",
-        "paslandau/guzzle-auto-charset-encoding-subscriber": "~0"
+        "paslandau/guzzle-application-cache-subscriber": "dev-master",
+        "paslandau/guzzle-auto-charset-encoding-subscriber": "dev-master"
     }
 }
