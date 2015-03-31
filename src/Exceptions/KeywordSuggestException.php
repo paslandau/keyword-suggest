@@ -3,7 +3,9 @@
 namespace paslandau\KeywordSuggest\Exceptions;
 
 
-class KeywordSuggestException extends \Exception{
+use paslandau\QueryScraper\Exceptions\QueryScraperException;
+
+class KeywordSuggestException extends QueryScraperException{
 
     public function __construct($message, $code = null, $previous = null){
 

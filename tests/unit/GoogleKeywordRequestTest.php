@@ -6,7 +6,7 @@ use GuzzleHttp\Message\Response;
 use GuzzleHttp\Stream\Stream;
 use paslandau\ArrayUtility\ArrayUtil;
 use paslandau\KeywordSuggest\Exceptions\KeywordSuggestException;
-use paslandau\KeywordSuggest\ScraperRequests\GoogleKeywordRequest;
+use paslandau\KeywordSuggest\Requests\GoogleKeywordRequest;
 use paslandau\WebUtility\WebUtil;
 
 class GoogleKeywordRequestTest extends PHPUnit_Framework_TestCase {
@@ -102,11 +102,13 @@ class GoogleKeywordRequestTest extends PHPUnit_Framework_TestCase {
             $body->write($data["input"]);
             $resp = new Response("200",[],$body);
 
+            $excMsg = "";
             try {
-                $res = $request->getSuggests($resp);
+                $res = $request->getResult($resp);
 //                echo "[\"".implode('", "',$res)."\"]"."\n";
             }catch(Exception $e){
                 $res = get_class($e);
+                $excMsg = " ({$e->getMessage()}) [{$e->getFile()}, line {$e->getLine()}]";
             }
 
             $expected = $data["expected"];
@@ -116,7 +118,7 @@ class GoogleKeywordRequestTest extends PHPUnit_Framework_TestCase {
                 "Error in test $test:",
                 "Input    : ".json_encode($data["input"]),
                 "Excpected: ".json_encode($expected),
-                "Actual   : ".json_encode($actual),
+                "Actual   : ".json_encode($actual).$excMsg,
             ];
             $msg = implode("\n",$msg);
             if(is_array($expected)){

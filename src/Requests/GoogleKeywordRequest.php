@@ -1,6 +1,6 @@
 <?php
 
-namespace paslandau\KeywordSuggest\ScraperRequests;
+namespace paslandau\KeywordSuggest\Requests;
 
 
 use GuzzleHttp\ClientInterface;
@@ -8,7 +8,7 @@ use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
 use paslandau\KeywordSuggest\Exceptions\KeywordSuggestException;
 
-class GoogleKeywordRequest extends AbstractKeywordRequest
+class GoogleKeywordRequest extends AbstractKeywordRequest implements KeywordRequestInterface
 {
 
     const SUGGEST_URL = "http://clients1.google.com/complete/search";
@@ -75,7 +75,7 @@ class GoogleKeywordRequest extends AbstractKeywordRequest
      * @return string[]
      * @throws KeywordSuggestException
      */
-    public function getSuggests(ResponseInterface $resp)
+    public function getResult(ResponseInterface $resp)
     {
         $body = $resp->getBody()->__toString();
         $pattern = "#window\\.google\\.ac\\.h\\((?P<json>.*)\\)#i";

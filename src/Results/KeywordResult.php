@@ -1,11 +1,12 @@
 <?php
 
-namespace paslandau\KeywordSuggest;
+namespace paslandau\KeywordSuggest\Results;
 
 
-use paslandau\KeywordSuggest\ScraperRequests\KeywordRequestInterface;
+use paslandau\KeywordSuggest\Requests\KeywordRequestInterface;
+use paslandau\QueryScraper\Results\QueryResultInterface;
 
-class KeywordResult {
+class KeywordResult implements QueryResultInterface {
     /**
      * @var KeywordRequestInterface
      */
@@ -13,7 +14,7 @@ class KeywordResult {
     /**
      * @var null|\string[]
      */
-    private $suggests;
+    private $result;
     /**
      * @var \Exception|null
      */
@@ -21,14 +22,14 @@ class KeywordResult {
 
     /**
      * @param KeywordRequestInterface $request
-     * @param string[]|null $suggests [optional]. Default: null.
+     * @param string[]|null $result [optional]. Default: null.
      * @param \Exception|null $exception [optional]. Default: null.
      */
-    function __construct($request, $suggests = null, $exception = null)
+    function __construct($request, $result = null, $exception = null)
     {
         $this->exception = $exception;
         $this->request = $request;
-        $this->suggests = $suggests;
+        $this->result = $result;
     }
 
     /**
@@ -66,18 +67,16 @@ class KeywordResult {
     /**
      * @return null|\string[]
      */
-    public function getSuggests()
+    public function getResult()
     {
-        return $this->suggests;
+        return $this->result;
     }
 
     /**
-     * @param null|\string[] $suggests
+     * @param null|\string[] $result
      */
-    public function setSuggests($suggests)
+    public function setResult($result)
     {
-        $this->suggests = $suggests;
+        $this->result = $result;
     }
-
-
-} 
+}

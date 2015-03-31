@@ -1,13 +1,10 @@
 <?php
 
-namespace paslandau\KeywordSuggest\ScraperRequests;
+namespace paslandau\KeywordSuggest\Requests;
 
 
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Message\ResponseInterface;
-use paslandau\KeywordSuggest\Exceptions\KeywordSuggestException;
-
-abstract class AbstractKeywordRequest implements KeywordRequestInterface{
+abstract class AbstractKeywordRequest implements KeywordRequestInterface
+{
 
     /**
      * @var string
@@ -21,16 +18,17 @@ abstract class AbstractKeywordRequest implements KeywordRequestInterface{
 
     /**
      * @param string $keyword
-     * @param string $group. [optional]. Default: "".
+     * @param string $group . [optional]. Default: "".
      */
     function __construct($keyword, $group = null)
     {
-        if($group === null) {
+        if ($group === null) {
             $group = "";
         }
         $this->group = $group;
         $this->keyword = $keyword;
     }
+
     /**
      * @return string
      */

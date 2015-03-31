@@ -1,21 +1,14 @@
-<?php namespace paslandau\KeywordSuggest\ScraperRequests;
+<?php
+
+namespace paslandau\KeywordSuggest\Requests;
+
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
+use paslandau\QueryScraper\Requests\QueryRequestInterface;
 
-interface KeywordRequestInterface
-{
-    /**
-     * @return string
-     */
-    public function getGroup();
-
-    /**
-     * @return string
-     */
-    public function getKeyword();
-
+interface KeywordRequestInterface extends QueryRequestInterface{
     /**
      * @param ClientInterface $client
      * @return RequestInterface
@@ -26,5 +19,5 @@ interface KeywordRequestInterface
      * @param ResponseInterface $resp
      * @return string[]
      */
-    public function getSuggests(ResponseInterface $resp);
+    public function getResult(ResponseInterface $resp);
 }
