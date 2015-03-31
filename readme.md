@@ -1,4 +1,5 @@
 #keyword-suggest
+[![Build Status](https://travis-ci.org/paslandau/keyword-suggest.svg?branch=master)](https://travis-ci.org/paslandau/keyword-suggest)
 
 Library to query keyword suggest systems
 
@@ -10,7 +11,7 @@ Coming soon...
 
 - PHP >= 5.5
 - Guzzle >= 5.0.3
-- guzzle-rotating-proxy-subscriber": "~0",
+- "guzzle-rotating-proxy-subscriber": "~0",
 
 ##Installation
 
