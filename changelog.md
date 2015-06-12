@@ -9,7 +9,7 @@
 
 ##0.1.0
 
- - changed package name from keyword-suggest to keyword-suggest
+ - changed package name from KeywordSuggest to keyword-suggest
 
 ###0.0.2
 

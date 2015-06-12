@@ -2,17 +2,21 @@
 
 namespace paslandau\KeywordSuggest\Results;
 
-
 use paslandau\KeywordSuggest\Requests\KeywordRequestInterface;
-use paslandau\QueryScraper\Results\QueryResultInterface;
+use paslandau\QueryScraper\Results\ResultInterface;
+use paslandau\QueryScraper\Results\RetryableResultInterface;
+use paslandau\QueryScraper\Results\RetryableResultTrait;
 
-class KeywordResult implements QueryResultInterface {
+class KeywordResult implements ResultInterface, RetryableResultInterface
+{
+    use RetryableResultTrait;
+
     /**
      * @var KeywordRequestInterface
      */
     private $request;
     /**
-     * @var null|\string[]
+     * @var null|string[]
      */
     private $result;
     /**
@@ -65,7 +69,7 @@ class KeywordResult implements QueryResultInterface {
     }
 
     /**
-     * @return null|\string[]
+     * @return null|string[]
      */
     public function getResult()
     {
@@ -73,7 +77,7 @@ class KeywordResult implements QueryResultInterface {
     }
 
     /**
-     * @param null|\string[] $result
+     * @param null|string[] $result
      */
     public function setResult($result)
     {

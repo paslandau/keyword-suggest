@@ -5,10 +5,9 @@ namespace paslandau\KeywordSuggest\Requests;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Message\RequestInterface;
-use GuzzleHttp\Message\ResponseInterface;
 use paslandau\KeywordSuggest\Exceptions\KeywordSuggestException;
 
-class GoogleKeywordRequest extends AbstractKeywordRequest implements KeywordRequestInterface
+class GoogleKeywordRequest extends AbstractKeywordRequest
 {
 
     const SUGGEST_URL = "http://clients1.google.com/complete/search";
@@ -38,7 +37,7 @@ class GoogleKeywordRequest extends AbstractKeywordRequest implements KeywordRequ
     {
         $this->cursorPosition = $cursorPosition;
         $this->domain = $domain;
-        if($lang === null) {
+        if ($lang === null) {
             $lang = "de";
         }
         $this->lang = $lang;
@@ -49,35 +48,35 @@ class GoogleKeywordRequest extends AbstractKeywordRequest implements KeywordRequ
      * @param ClientInterface $client
      * @return RequestInterface
      */
-    public function createRequest(ClientInterface $client){
+    public function createRequest(ClientInterface $client)
+    {
         $query = [];
         $query["q"] = $this->keyword;
         $query["hl"] = $this->lang;
-        if($this->cursorPosition !== null && $this->cursorPosition > 0 && $this->cursorPosition <= mb_strlen($this->keyword)){
+        if ($this->cursorPosition !== null && $this->cursorPosition > 0 && $this->cursorPosition <= mb_strlen($this->keyword)) {
             $query["cp"] = $this->cursorPosition;
         }
-        if($this->domain !== null){
+        if ($this->domain !== null) {
             $query["client"] = "navquery";
             $query["ds"] = "navquery";
             $query["gs_ri"] = "navquery";
-            $query["requiredfields"] = "site:".$this->domain;
+            $query["requiredfields"] = "site:" . $this->domain;
             $query["sos"] = "1";
-        }else{
+        } else {
             $query["client"] = "hp";
         }
         $options = ["query" => $query];
-        $req = $client->createRequest("GET",self::SUGGEST_URL,$options);
+        $req = $client->createRequest("GET", self::SUGGEST_URL, $options);
         return $req;
     }
 
     /**
-     * @param ResponseInterface $resp
+     * @param string $body
      * @return string[]
      * @throws KeywordSuggestException
      */
-    public function getResult(ResponseInterface $resp)
+    public function parseSuggests($body)
     {
-        $body = $resp->getBody()->__toString();
         $pattern = "#window\\.google\\.ac\\.h\\((?P<json>.*)\\)#i";
         if (!preg_match($pattern, $body, $json)) {
             throw new KeywordSuggestException("Invalid response, pattern $pattern not found in '{$body}'");
@@ -91,7 +90,7 @@ class GoogleKeywordRequest extends AbstractKeywordRequest implements KeywordRequ
         }
         $suggestArray = [];
         foreach ($obj[1] as $arr) {
-            if(count($arr) > 3){
+            if (count($arr) > 3) {
                 continue; // probably not a suggest but some other info
             }
             $tmp = $arr[0];

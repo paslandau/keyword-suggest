@@ -1,7 +1,15 @@
 #keyword-suggest
-[![Build Status](https://travis-ci.org/paslandau/keyword-suggest.svg?branch=master)](https://travis-ci.org/paslandau/keyword-suggest)
-
 Library to query keyword suggest systems
+
+<!---
+[![Build Status](https://travis-ci.org/paslandau/keyword-suggest.svg?branch=master)](https://travis-ci.org/paslandau/keyword-suggest)
+-->
+
+#WORK IN PROGRESS!
+
+- personal backup
+- no unit tests
+- use at your own risk
 
 ##Description
 
