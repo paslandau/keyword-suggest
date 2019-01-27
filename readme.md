@@ -1,27 +1,33 @@
-#keyword-suggest
+# DEPRECATED ⛔ 
+
+This repository has been deprecated as of 2019-01-27. That code was written a long time ago and has been unmaintained for several years. Thus, repository will now be [archived](https://github.blog/2017-11-08-archiving-repositories/).If you are interested in taking over ownership, feel free to [contact me](https://www.pascallandau.com/about/).
+
+---
+
+# keyword-suggest
 Library to query keyword suggest systems
 
 <!---
 [![Build Status](https://travis-ci.org/paslandau/keyword-suggest.svg?branch=master)](https://travis-ci.org/paslandau/keyword-suggest)
 -->
 
-#WORK IN PROGRESS!
+# WORK IN PROGRESS!
 
 - personal backup
 - no unit tests
 - use at your own risk
 
-##Description
+## Description
 
 Coming soon...
 
-##Requirements
+## Requirements
 
 - PHP >= 5.5
 - Guzzle >= 5.0.3
 - "guzzle-rotating-proxy-subscriber": "~0",
 
-##Installation
+## Installation
 
 The recommended way to install keyword-suggest is through [Composer](http://getcomposer.org/).
 
